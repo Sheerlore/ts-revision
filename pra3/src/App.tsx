@@ -63,14 +63,14 @@ function App() {
     <div className="App">
       <SearchForm value={login} onSearch={setLogin} />
       <GitHubUser login={login} />
-      <FixedSizeList
+      {/* <FixedSizeList
         height={window.innerHeight}
         width={window.innerWidth - 20}
         itemCount={bigList.length}
         itemSize={50}
       >
         {renderRow}
-      </FixedSizeList>
+      </FixedSizeList> */}
 
     </div>
   );
