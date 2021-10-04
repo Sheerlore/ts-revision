@@ -1,18 +1,23 @@
-import { useFetch } from './hook';
+import React from 'react';
+import Fetch from './Fetch';
 
 export default function GitHubUser({ login }: {login: string}) {
-  const {loading, data, error } = useFetch(
-    `https://api.github.com/users/${login}`
+  return (
+    <Fetch
+      uri={`https://api.github.com/users/${login}`}
+      renderSuccess={UserDetails}
+    />
   );
+}
 
-  if (error) {
-    return <pre>{JSON.stringify(error, null, 2)}</pre>
-  }
+interface GithubUser {
+  name: string,
+  login: string,
+  avatar_url: string,
+  location: string
+};
 
-  if (loading) {
-    return <h1>loading...</h1>
-  }
-
+function UserDetails(data: any) {
   return (
     <div className="githubUser">
       <img
@@ -22,7 +27,8 @@ export default function GitHubUser({ login }: {login: string}) {
       />
       <div>
         <h1>{data.login}</h1>
-
+        {data.name && <p>{data.name}</p>}
+        {data.location && <p>{data.location}</p>}
       </div>
     </div>
   );

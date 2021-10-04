@@ -3,9 +3,9 @@ import { useFetch } from "./hook";
 
 interface FetchProps {
   uri: string,
-  renderSuccess: (params: any) => React.Component,
-  loadingFallback: JSX.Element
-  renderError: (params: string) => JSX.Element
+  renderSuccess: (data: Object) => JSX.Element,
+  loadingFallback?: JSX.Element
+  renderError?: (params: string) => JSX.Element
 }
 
 export default function Fetch({
@@ -19,5 +19,6 @@ export default function Fetch({
   const { loading, data, error } = useFetch(uri);
   if (error) return renderError(error);
   if (loading) return loadingFallback;
-  if (data) return renderSuccess(data)
+  if (data) return renderSuccess(data);
+  return <></>;
 }

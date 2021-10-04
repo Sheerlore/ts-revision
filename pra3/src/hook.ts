@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from "react";
 
-interface ReturnFetch {
-  loading: Boolean,
-  data: any,
-  error: any 
-};
 
-export function useFetch(uri: string): ReturnFetch {
+export function useFetch(uri: string) {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
